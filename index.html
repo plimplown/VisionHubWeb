@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VisionHub</title>
   <meta name="description" content="VisionHub" />
-  <link rel="icon" type="image/png" href="V.png">
+  <link rel="icon" type="image/png" href="V.png" />
   <link rel="apple-touch-icon" href="V.png" />
   <link rel="shortcut icon" href="V.png" />
   <link rel="mask-icon" color="#3494fa" href="V.png" />
@@ -20,10 +20,8 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Animated Background -->
   <canvas id="bg-canvas"></canvas>
 
-  <!-- Header -->
   <header>
     <div class="container header-flex">
       <div class="logo" tabindex="0">VisionHub</div>
@@ -36,155 +34,123 @@
             </a>
           </li>
           <li>
-            <a
-              href="https://discord.gg/Ygcq9dpW9t"
-              target="_blank"
-              rel="noopener"
-            >
+            <a href="https://discord.gg/Ygcq9dpW9t" target="_blank" rel="noopener">
               <i class="fa-brands fa-discord"></i>
               <span>Discord</span>
             </a>
           </li>
+          <li>
+            <a href="#faq">
+              <i class="fa-solid fa-question"></i>
+              <span>FAQ</span>
+            </a>
+          </li>
         </ul>
-        <button
-          class="menu-btn"
-          id="menuBtn"
-          aria-label="Open Menu"
-        >
+        <button class="menu-btn" id="menuBtn" aria-label="Open Menu">
           <span></span><span></span><span></span>
         </button>
       </nav>
     </div>
   </header>
 
-  <!-- Main Content -->
   <main class="main-sections">
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container hero-content">
-        <div class="hero-text">
-          <h1>VisionHub</h1>
-          <p>Powerful script for Murder Mystery 2.</p>
-          <div class="hero-btns">
-            <a
-              href="https://discord.gg/Ygcq9dpW9t"
-              class="btn primary"
-              target="_blank"
-            >
-              <i class="fa-solid fa-download"></i>
-              <span>Get Now</span>
-            </a>
+    <section class="unified-section">
+      <div class="container unified-content">
+        <div class="hero-section">
+          <div class="hero-text">
+            <h1>
+              <span class="gradient-text">VisionHub</span>
+              <span class="pulse-dot"></span>
+            </h1>
+            <p>
+              Powerful script for Murder Mystery 2.<br />
+              <span class="typewriter" id="typewriter"></span>
+            </p>
+            <div class="hero-btns">
+              <a
+                href="https://discord.gg/Ygcq9dpW9t"
+                class="btn primary"
+                target="_blank"
+              >
+                <i class="fa-solid fa-download"></i>
+                <span>Get Now</span>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Features -->
-    <section class="features" id="features">
-      <div class="container">
-        <h2 class="section-title">
-          <i class="fa-solid fa-star"></i> Features
-        </h2>
-        <div class="features-grid">
-          <div class="feature-card">
-            <span class="feature-icon"><i class="fa-solid fa-bolt"></i></span>
-            <h3>Fast Updates</h3>
-            <p>VisionHub updates and fixes are fast.</p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon"
-              ><i class="fa-solid fa-shield-halved"></i></span
-            >
-            <h3>Undetectable</h3>
-            <p>
-              It is completely undetectable, so you can use VisionHub with
-              peace of mind.
-            </p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon"
-              ><i class="fa-solid fa-crosshairs"></i></span
-            >
-            <h3>Precision</h3>
-            <p>
-              Advanced aimbot and ESP systems that provide unmatched precision.
-            </p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon"><i class="fa-solid fa-link"></i></span>
-            <h3>Integration</h3>
-            <p>Works with all popular Roblox executors.</p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon"><i class="fa-solid fa-code"></i></span>
-            <h3>Automated</h3>
-            <p>
-              Time-saving algorithms for efficient resource and Coins farming.
-            </p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon"><i class="fa-solid fa-moon"></i></span>
-            <h3>Minimalist UI</h3>
-            <p>Modern, comfortable neon interface for all devices.</p>
+        <div class="features-section" id="features">
+          <h2 class="section-title glassmorphism">
+            <i class="fa-solid fa-star"></i> Key Features
+          </h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <span class="feature-icon"><i class="fa-solid fa-bolt"></i></span>
+              <h3>Fast Updates</h3>
+              <p>VisionHub updates and fixes are fast.</p>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon"><i class="fa-solid fa-shield-halved"></i></span>
+              <h3>Undetectable</h3>
+              <p>It is completely undetectable, so you can use VisionHub with peace of mind.</p>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon"><i class="fa-solid fa-crosshairs"></i></span>
+              <h3>Precision</h3>
+              <p>Advanced aimbot and ESP systems that provide more precision.</p>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon"><i class="fa-solid fa-link"></i></span>
+              <h3>Integration</h3>
+              <p>Works with all popular Roblox executors.</p>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon"><i class="fa-solid fa-code"></i></span>
+              <h3>Automated</h3>
+              <p>Time-saving algorithms for efficient resource and Coins farming.</p>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon"><i class="fa-solid fa-moon"></i></span>
+              <h3>Minimalist UI</h3>
+              <p>Modern, comfortable neon interface for all devices.</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Executors -->
-    <section class="executors" id="executors">
-      <div class="container">
-        <h2 class="section-title">
-          <i class="fa-solid fa-rocket"></i> Supported Executors
-        </h2>
-        <div class="executors-carousel">
-          <div
-            class="executor-logo"
-            tabindex="0"
-            onclick="window.open('https://krnl.place/', '_blank')"
-          >
-            <img src="./img/krnl.png" alt="KRNL" /><span>KRNL</span>
-          </div>
-          <div
-            class="executor-logo"
-            tabindex="0"
-            onclick="window.open('https://deltaexploits.gg/', '_blank')"
-          >
-            <img src="./img/delta.png" alt="Delta" /><span>Delta</span>
-          </div>
-          <div
-            class="executor-logo"
-            tabindex="0"
-            onclick="window.open('https://getswift.gg/', '_blank')"
-          >
-            <img src="./img/swift.png" alt="Swift" /><span>Swift</span>
-          </div>
-          <div
-            class="executor-logo"
-            tabindex="0"
-            onclick="window.open('https://discord.gg/TrWYNMdcSg/', '_blank')"
-          >
-            <img src="./img/drift.png" alt="Drift" /><span>Drift</span>
-          </div>
-          <div class="executor-logo more">
-            <i class="fa-solid fa-plus"></i>
-            <span>And more<br /><small>others</small></span>
+        <div class="faq-section" id="faq">
+          <h2 class="section-title glassmorphism">
+            <i class="fa-solid fa-question"></i> FAQ
+          </h2>
+          <div class="faq-list">
+            <div class="faq-item">
+              <button class="faq-question">Is VisionHub safe to use?</button>
+              <div class="faq-answer">
+                Yes! VisionHub is designed to be completely undetectable and is regularly updated to keep you safe.
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">Which executors are supported?</button>
+              <div class="faq-answer">
+                Krnl, Delta, Swift, Drift, and many others.
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">Does it work on mobile?</button>
+              <div class="faq-answer">
+                Yes, VisionHub works both on PC and mobile.
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer>
     <div class="container">
       <span>&copy; 2025 VisionHub. All rights reserved.</span>
       <span class="footer-links">
-        <a
-          href="https://discord.gg/Ygcq9dpW9t"
-          target="_blank"
-          rel="noopener"
-        >
+        <a href="https://discord.gg/Ygcq9dpW9t" target="_blank" rel="noopener">
           <i class="fa-brands fa-discord"></i> Discord
         </a>
       </span>
