@@ -1,119 +1,188 @@
+// main.js
+
 document.addEventListener('DOMContentLoaded', () => {
-  const canvas = document.getElementById('bg-canvas');
-  if (canvas instanceof HTMLCanvasElement) {
-    const ctx = canvas.getContext('2d');
-    let width, height;
-
-    function resizeCanvas() {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    const blobs = Array.from({ length: 25 }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      r: Math.random() * 6 + 2,
-      dx: (Math.random() - 0.5) * 1.5,
-      dy: (Math.random() - 0.5) * 1.5,
-      t: Math.random() * 100,
-      color: `rgba(52, 148, 250, ${Math.random() * 0.4 + 0.2})`
-    }));
-
-    const raf = window.requestAnimationFrame?.bind(window)
-              || window.webkitRequestAnimationFrame?.bind(window)
-              || ((cb) => setTimeout(cb, 1000 / 60));
-
-    function drawBlobs() {
-      ctx.clearRect(0, 0, width, height);
-
-      blobs.forEach(blob => {
-        const { x, y, r, color } = blob;
-        const grad = ctx.createRadialGradient(x, y, r * 0.1, x, y, r);
-        grad.addColorStop(0, color);
-        grad.addColorStop(1, 'rgba(13,19,33,0)');
-
-        ctx.save();
-        ctx.globalAlpha = 0.6;
-        ctx.shadowColor = '#3494fa';
-        ctx.shadowBlur = 60;
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(x, y, r, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-
-        blob.x += Math.sin(blob.t / 60) * blob.dx;
-        blob.y += Math.cos(blob.t / 60) * blob.dy;
-        blob.t += 0.8;
-
-        if (blob.x - r > width)  blob.x = -r;
-        if (blob.x + r < 0)      blob.x = width + r;
-        if (blob.y - r > height) blob.y = -r;
-        if (blob.y + r < 0)      blob.y = height + r;
-      });
-
-      raf(drawBlobs);
-    }
-
-    drawBlobs();
-  }
-
-  const menuBtn  = document.getElementById('menuBtn');
-  const navLinks = document.getElementById('navLinks');
-  if (menuBtn && navLinks) {
-    menuBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-    });
-  }
-
-  document.querySelectorAll('.faq-question').forEach(button => {
-    button.addEventListener('click', () => {
-      const item = button.closest('.faq-item');
-      if (!item) return;
-      document.querySelectorAll('.faq-item.open')
-        .forEach(i => i !== item && i.classList.remove('open'));
-      item.classList.toggle('open');
-    });
-  });
-
-  const typewriterTexts = [
+  // --- Animated Typewriter Effect (Advanced) ---
+  const typewriter = document.getElementById('typewriter');
+  if (typewriter) {
+  const words = [
     'Aimbot and ESP',
     'Automation Features',
     'Trolling Tools',
     'Mobile Support',
     'This is VisionHub.'
   ];
-  let twIndex = 0, charIndex = 0;
-  const twEl = document.getElementById('typewriter');
+    let wordIndex = 0, charIndex = 0, deleting = false;
+    let typingSpeed = 48, deletingSpeed = 24, pauseTyping = 1200, pauseDeleting = 550;
 
-  function type() {
-    if (!twEl) return;
-    const text = typewriterTexts[twIndex];
-    if (charIndex < text.length) {
-      twEl.textContent += text[charIndex++];
-      setTimeout(type, 100);
-    } else {
-      setTimeout(erase, 2000);
+    function type() {
+      const word = words[wordIndex];
+      if (!deleting) {
+        typewriter.textContent = word.slice(0, charIndex++);
+        if (charIndex > word.length) {
+          deleting = true;
+          setTimeout(type, pauseTyping);
+          return;
+        }
+      } else {
+        typewriter.textContent = word.slice(0, --charIndex);
+        if (charIndex === 0) {
+          deleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+          setTimeout(type, pauseDeleting);
+          return;
+        }
+      }
+      setTimeout(type, deleting ? deletingSpeed : typingSpeed);
+    }
+    // Accessibility: announce on change
+    const observer = new MutationObserver(() => {
+      typewriter.setAttribute('aria-live', 'polite');
+    });
+    observer.observe(typewriter, { childList: true });
+    type();
+  }
+
+  // --- Interactive FAQ Accordion (Keyboard Accessible) ---
+  document.querySelectorAll('.faq-card').forEach(card => {
+    const summary = card.querySelector('summary');
+    summary.addEventListener('keydown', e => {
+      if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        summary.click();
+      }
+    });
+  });
+
+  // --- Advanced Responsive Background Particles ---
+  const canvas = document.getElementById('bg-canvas');
+  if (canvas && canvas.getContext) {
+    const ctx = canvas.getContext('2d');
+    let width = 0,
+      height = 0,
+      particles = [],
+      mouse = { x: -1000, y: -1000, radius: 90 };
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.r = Math.random() * 1.7 + 0.7;
+        this.dx = (Math.random() - 0.5) * 0.7;
+        this.dy = (Math.random() - 0.5) * 0.7;
+        this.opacity = Math.random() * 0.4 + 0.3;
+        this.color = `rgba(59,130,246,${this.opacity})`;
+      }
+      move() {
+        this.x += this.dx;
+        this.y += this.dy;
+        if (this.x < 0 || this.x > width) this.dx *= -1;
+        if (this.y < 0 || this.y > height) this.dy *= -1;
+      }
+      draw(ctx) {
+        ctx.save();
+        ctx.globalAlpha = this.opacity;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.shadowColor = '#3b82f6';
+        ctx.shadowBlur = 10;
+        ctx.fill();
+        ctx.restore();
+      }
+      interact() {
+        const dx = this.x - mouse.x;
+        const dy = this.y - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < mouse.radius) {
+          const angle = Math.atan2(dy, dx);
+          this.x += Math.cos(angle);
+          this.y += Math.sin(angle);
+        }
+      }
+    }
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      particles = [];
+      const density = Math.min(60, Math.floor((width * height) / 25000));
+      for (let i = 0; i < density; i++) particles.push(new Particle());
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+
+    canvas.addEventListener('mousemove', e => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+    canvas.addEventListener('mouseleave', () => {
+      mouse.x = -1000;
+      mouse.y = -1000;
+    });
+
+    function connectParticles() {
+      const maxDist = 100;
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const p1 = particles[i];
+          const p2 = particles[j];
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < maxDist) {
+            ctx.save();
+            ctx.globalAlpha = 0.06;
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = '#60a5fa';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+            ctx.restore();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      for (const p of particles) {
+        p.move();
+        p.interact();
+        p.draw(ctx);
+      }
+      connectParticles();
+      requestAnimationFrame(animate);
+    }
+    animate();
+  }
+
+  // --- Smooth Scroll for Anchor Links (if any) ---
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const targetId = link.getAttribute('href').substring(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        e.preventDefault();
+        window.scrollTo({
+          top: target.getBoundingClientRect().top + window.scrollY - 48,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // --- Accessibility: Focus ring for keyboard users only ---
+  function handleFirstTab(e) {
+    if (e.key === 'Tab') {
+      document.body.classList.add('user-is-tabbing');
+      window.removeEventListener('keydown', handleFirstTab);
     }
   }
-
-  function erase() {
-    if (!twEl) return;
-    if (charIndex > 0) {
-      twEl.textContent = twEl.textContent.slice(0, -1);
-      charIndex--;
-      setTimeout(erase, 50);
-    } else {
-      twIndex = (twIndex + 1) % typewriterTexts.length;
-      setTimeout(type, 300);
-    }
-  }
-
-  if (twEl) {
-    setTimeout(type, 500);
-  }
+  window.addEventListener('keydown', handleFirstTab);
 });

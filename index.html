@@ -5,158 +5,112 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VisionHub</title>
   <meta name="description" content="VisionHub" />
-  <link rel="icon" type="image/png" href="V.png" />
-  <link rel="apple-touch-icon" href="V.png" />
-  <link rel="shortcut icon" href="V.png" />
-  <link rel="mask-icon" color="#3494fa" href="V.png" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
+  <!-- Phosphor Icons -->
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/css/phosphor.css"/>
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <canvas id="bg-canvas"></canvas>
+<body class="bg-neutral-950 text-zinc-100 font-inter min-h-screen flex flex-col">
+  <canvas id="bg-canvas" class="fixed inset-0 z-0 pointer-events-none" aria-hidden="true"></canvas>
 
-  <header>
-    <div class="container header-flex">
-      <div class="logo" tabindex="0">VisionHub</div>
-      <nav>
-        <ul id="navLinks">
-          <li>
-            <a class="active" href="/">
-              <i class="fa-solid fa-house"></i>
-              <span>Home</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://discord.gg/Ygcq9dpW9t" target="_blank" rel="noopener">
-              <i class="fa-brands fa-discord"></i>
-              <span>Discord</span>
-            </a>
-          </li>
-          <li>
-            <a href="#faq">
-              <i class="fa-solid fa-question"></i>
-              <span>FAQ</span>
-            </a>
-          </li>
-        </ul>
-        <button class="menu-btn" id="menuBtn" aria-label="Open Menu">
-          <span></span><span></span><span></span>
-        </button>
-      </nav>
-    </div>
-  </header>
+  <main class="flex-1 flex flex-col items-center justify-center relative z-10 mt-24">
+    <!-- HERO -->
+    <section class="w-full flex flex-col items-center justify-center text-center px-4 pt-12 pb-20">
+      <h1 class="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-blue-400 via-blue-500 to-sky-300 bg-clip-text text-transparent select-none">
+        VisionHub
+      </h1>
+      <div class="mb-6 text-zinc-400 text-lg md:text-xl max-w-xl mx-auto">
+        The best Murder Mystery 2 script.<br>
+        <span id="typewriter" class="block h-6 mt-2 text-blue-300 font-mono text-base md:text-lg"></span>
+      </div>
+      <div class="w-full max-w-2xl flex flex-col items-center mt-4">
+        <pre class="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 text-left overflow-x-auto text-blue-200 text-sm font-mono select-all" id="rawScript"><code>loadstring(game:HttpGet("https://raw.githubusercontent.com/plimplown/VisionHub/refs/heads/main/Loader.lua"))()</code></pre>
+      </div>
+    </section>
 
-  <main class="main-sections">
-    <section class="unified-section">
-      <div class="container unified-content">
-        <div class="hero-section">
-          <div class="hero-text">
-            <h1>
-              <span class="gradient-text">VisionHub</span>
-              <span class="pulse-dot"></span>
-            </h1>
-            <p>
-              The best Murder Mystery 2 script.<br />
-              <span class="typewriter" id="typewriter"></span>
-            </p>
-            <div class="hero-btns">
-              <a
-                href="https://discord.gg/Ygcq9dpW9t"
-                class="btn primary"
-                target="_blank"
-              >
-                <i class="fa-solid fa-download"></i>
-                <span>Get Now</span>
-              </a>
-            </div>
-          </div>
-        </div>
+    <!-- ADVANCED SYSTEMS / FEATURES -->
+    <section id="features" class="w-full max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-4 pb-20">
+      <div class="feature-card">
+        <i class="ph ph-flash-bold text-2xl text-blue-400 mb-2"></i>
+        <div class="font-semibold text-lg mb-1">Fast Updates</div>
+        <p class="text-zinc-400 text-sm">Frequent updates and bug fixes ensure optimal performance.</p>
+      </div>
+      <div class="feature-card">
+        <i class="ph ph-shield-check-bold text-2xl text-green-400 mb-2"></i>
+        <div class="font-semibold text-lg mb-1">Undetectable</div>
+        <p class="text-zinc-400 text-sm">Use with confidence — VisionHub is fully undetectable.</p>
+      </div>
+      <div class="feature-card">
+        <i class="ph ph-crosshair-simple-bold text-2xl text-rose-400 mb-2"></i>
+        <div class="font-semibold text-lg mb-1">Precision</div>
+        <p class="text-zinc-400 text-sm">High-performance aimbot and ESP for unmatched accuracy.</p>
+      </div>
+      <div class="feature-card">
+        <i class="ph ph-device-mobile-camera-bold text-2xl text-cyan-400 mb-2"></i>
+        <div class="font-semibold text-lg mb-1">Full Integration</div>
+        <p class="text-zinc-400 text-sm">Compatible with all major Roblox executors.</p>
+      </div>
+      <div class="feature-card">
+        <i class="ph ph-cpu-bold text-2xl text-fuchsia-400 mb-2"></i>
+        <div class="font-semibold text-lg mb-1">Automated Farming</div>
+        <p class="text-zinc-400 text-sm">Smart algorithms for efficient coin and resource farming.</p>
+      </div>
+      <div class="feature-card">
+        <i class="ph ph-key-bold text-2xl text-yellow-400 mb-2"></i>
+        <div class="font-semibold text-lg mb-1">Keyless</div>
+        <p class="text-zinc-400 text-sm">Simple, keyless loader — no extra steps needed.</p>
+      </div>
+    </section>
 
-        <div class="features-section" id="features">
-          <h2 class="section-title glassmorphism">
-            <i class="fa-solid fa-star"></i> Key Features
-          </h2>
-          <div class="features-grid">
-            <div class="feature-card">
-              <span class="feature-icon"><i class="fa-solid fa-bolt"></i></span>
-              <h3>Fast Updates</h3>
-              <p>VisionHub updates and fixes are fast.</p>
-            </div>
-            <div class="feature-card">
-              <span class="feature-icon"><i class="fa-solid fa-shield-halved"></i></span>
-              <h3>Undetectable</h3>
-              <p>It is completely undetectable, so you can use VisionHub with peace of mind.</p>
-            </div>
-            <div class="feature-card">
-              <span class="feature-icon"><i class="fa-solid fa-crosshairs"></i></span>
-              <h3>Precision</h3>
-              <p>Advanced aimbot and ESP systems that provide more precision.</p>
-            </div>
-            <div class="feature-card">
-              <span class="feature-icon"><i class="fa-solid fa-link"></i></span>
-              <h3>Integration</h3>
-              <p>Works with all popular Roblox executors.</p>
-            </div>
-            <div class="feature-card">
-              <span class="feature-icon"><i class="fa-solid fa-code"></i></span>
-              <h3>Automated</h3>
-              <p>Time-saving algorithms for efficient resource and Coins farming.</p>
-            </div>
-            <div class="feature-card">
-              <span class="feature-icon"><i class="fa-solid fa-moon"></i></span>
-              <h3>Minimalist UI</h3>
-              <p>Modern, comfortable neon interface for all devices.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-section" id="faq">
-          <h2 class="section-title glassmorphism">
-            <i class="fa-solid fa-question"></i> FAQ
-          </h2>
-          <div class="faq-list">
-            <div class="faq-item">
-              <button class="faq-question">Is VisionHub safe to use?</button>
-              <div class="faq-answer">
-                Yes! VisionHub is designed to be completely undetectable and is regularly updated to keep you safe.
-              </div>
-            </div>
-            <div class="faq-item">
-              <button class="faq-question">Which executors are supported?</button>
-              <div class="faq-answer">
-                Krnl, Delta, Swift, Drift, and many others.
-              </div>
-            </div>
-            <div class="faq-item">
-              <button class="faq-question">Does it work on mobile?</button>
-              <div class="faq-answer">
-                Yes, VisionHub works both on PC and mobile.
-              </div>
-            </div>
-          </div>
-        </div>
+    <!-- FAQ -->
+    <section id="faq" class="w-full max-w-xl mx-auto px-4 pb-24">
+      <h2 class="text-2xl font-bold mb-6 text-blue-400">FAQ</h2>
+      <div class="faq-list flex flex-col gap-2">
+        <details class="faq-card group border border-neutral-800 rounded-lg px-5 py-4 bg-neutral-900/60 transition">
+          <summary class="cursor-pointer flex items-center justify-between text-lg font-medium outline-none group-open:text-blue-300">
+            Is it safe to use VisionHub?
+            <span class="ml-2 text-blue-400"><i class="ph ph-caret-down"></i></span>
+          </summary>
+          <div class="mt-3 text-zinc-400">Yes! VisionHub is designed to be completely undetectable and is regularly updated to keep you safe.</div>
+        </details>
+        <details class="faq-card group border border-neutral-800 rounded-lg px-5 py-4 bg-neutral-900/60 transition">
+          <summary class="cursor-pointer flex items-center justify-between text-lg font-medium outline-none group-open:text-blue-300">
+            Which devices are supported?
+            <span class="ml-2 text-blue-400"><i class="ph ph-caret-down"></i></span>
+          </summary>
+          <div class="mt-3 text-zinc-400">Compatible with Windows, macOS, smartphones.</div>
+        </details>
+        <details class="faq-card group border border-neutral-800 rounded-lg px-5 py-4 bg-neutral-900/60 transition">
+          <summary class="cursor-pointer flex items-center justify-between text-lg font-medium outline-none group-open:text-blue-300">
+            Do I need to install anything?
+            <span class="ml-2 text-blue-400"><i class="ph ph-caret-down"></i></span>
+          </summary>
+          <div class="mt-3 text-zinc-400">No installation required. Simply copy the script, paste into your executor, and run.</div>
+        </details>
+        <details class="faq-card group border border-neutral-800 rounded-lg px-5 py-4 bg-neutral-900/60 transition">
+          <summary class="cursor-pointer flex items-center justify-between text-lg font-medium outline-none group-open:text-blue-300">
+            How do I get support or updates?
+            <span class="ml-2 text-blue-400"><i class="ph ph-caret-down"></i></span>
+          </summary>
+          <div class="mt-3 text-zinc-400">Join our <a href="https://discord.gg/Ygcq9dpW9t" target="_blank" class="text-blue-400 underline hover:text-blue-300">Discord</a> for instant support, changelogs, updates, and the latest news.</div>
+        </details>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container">
-      <span>&copy; 2025 VisionHub. All rights reserved.</span>
-      <span class="footer-links">
-        <a href="https://discord.gg/Ygcq9dpW9t" target="_blank" rel="noopener">
-          <i class="fa-brands fa-discord"></i> Discord
-        </a>
-      </span>
+  <footer class="w-full bg-neutral-950 border-t border-neutral-800 text-center py-6 text-zinc-500 text-xs z-20 relative">
+    <div>
+      &copy; 2025 VisionHub. Made by @plimplown.
+      <a href="https://discord.gg/Ygcq9dpW9t" target="_blank" rel="noopener" class="ml-2 text-blue-400 hover:underline">
+        Discord
+      </a>
     </div>
   </footer>
-
-  <script src="main.js"></script>
+  <script src="main.js" defer></script>
 </body>
 </html>
